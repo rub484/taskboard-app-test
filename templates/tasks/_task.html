@@ -1,0 +1,12 @@
+<li class="flex items-center gap-3 px-4 py-3">
+  <button hx-post="{% url 'tasks:toggle' task.pk %}" hx-target="closest li" hx-swap="outerHTML"
+          class="flex h-5 w-5 shrink-0 items-center justify-center rounded border {% if task.done %}border-indigo-600 bg-indigo-600 text-white{% else %}border-slate-300 hover:border-indigo-400{% endif %}"
+          aria-label="{% if task.done %}Mark as not done{% else %}Mark as done{% endif %}">
+    {% if task.done %}&check;{% endif %}
+  </button>
+  <span class="flex-1 {% if task.done %}text-slate-400 line-through{% endif %}">{{ task.title }}</span>
+  <button hx-delete="{% url 'tasks:delete' task.pk %}" hx-target="closest li" hx-swap="outerHTML"
+          class="text-sm text-slate-400 hover:text-red-600">
+    Delete
+  </button>
+</li>
